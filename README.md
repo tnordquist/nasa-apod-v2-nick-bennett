@@ -14,4 +14,4 @@ In addition to the files in this project, there are a number of external compile
 
 * **`nasa.properties`**
 
-
+During the build process, a file with the path (relative to the project directory) and name `../../services/nasa.properties` must be found (i.e. `services` must be located in the parent directory of the parent directory of this project), and must be readable as a Java properties file. It must contain (minimally) the property `api_key`, with a value obtained from ["NASA Open API: Get Your API Key"](https://api.nasa.gov/index.html#apply-for-an-api-key.)
