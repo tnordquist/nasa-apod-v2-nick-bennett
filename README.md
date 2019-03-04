@@ -10,7 +10,7 @@ This app is used in a series of exercises in the Deep Dive Coding Java + Android
 
 * **`deepdive-utils`**
 
-In addition to the files in this project, there are a number of external compile-time and run-time dependencies. These are specified in the `dependencies` section of the `app` module-level `build.gradle` file; however, one of these is not satisfiable through the Maven central or Google repositories: the `edu.cnm.deepdive:deepdive-utils:1.0.0` library must be built by cloning the repository locates at <https://github.com/deep-dive-coding-java/deepdive-utils>, and running `mvn install` to install the artifact in your local Maven repository. (The project-level `build.gradle` file of this project is already configured to include the local Maven repository in its dependencies search.)
+In addition to the files in this project, there are a number of external compile-time and run-time dependencies. These are specified in the `dependencies` section of the `app` module-level `build.gradle` file; however, one of these is not satisfiable through the Maven central or Google repositories: the `edu.cnm.deepdive:deepdive-utils:1.0.0` library must be built by cloning the repository located at <https://github.com/deep-dive-coding-java/deepdive-utils>, and running `mvn install` (which can be done from the Maven tool window of IntelliJ IDEA) to install the artifact in your local Maven repository. (The project-level `build.gradle` file of this project is already configured to include the local Maven repository in its dependencies search.)
 
 * **`nasa.properties`**
 
