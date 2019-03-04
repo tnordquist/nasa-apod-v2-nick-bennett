@@ -46,6 +46,11 @@ public abstract class ApodDB extends RoomDatabase {
    */
   public abstract ApodDao getApodDao();
 
+  /**
+   * Returns an instance of a Room-generated implementation of {@link AccessDao}.
+   *
+   * @return data access object for CRUD operations involving {@link Access} instances.
+   */
   public abstract AccessDao getAccessDao();
 
   private static class InstanceHolder {

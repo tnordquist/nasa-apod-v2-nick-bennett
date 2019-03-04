@@ -18,8 +18,8 @@ public final class ApodDBService {
   }
 
   /**
-   * Implements an asynchronous <code>INSERT</code> of an {@link Apod} instance into the local
-   * database.
+   * Implements an asynchronous <code>INSERT</code> of one or more {@link Apod} instances, with
+   * related {@link Access} instances, into the local database.
    */
   public static class InsertApodTask
       extends BaseFluentAsyncTask<Apod, Void, List<Long>, List<Long>> {
@@ -40,8 +40,8 @@ public final class ApodDBService {
   }
 
   /**
-   * Implements an asynchronous <code>SELECT</code> of a single {@link Apod} instance from the local
-   * database.
+   * Implements an asynchronous <code>SELECT</code> of a single {@link Apod} instance, and an
+   * <code>INSERT</code> of a related {@link Access} instance, in the local database.
    */
   public static class SelectApodTask extends BaseFluentAsyncTask<Date, Void, Apod, Apod> {
 
@@ -73,6 +73,10 @@ public final class ApodDBService {
 
   }
 
+  /**
+   * Implements an asynchronous <code>DELETE</code> of one or more {@link Access} instances from the
+   * local database.
+   */
   public static class DeleteApodTask extends BaseFluentAsyncTask<Apod, Void, Void, Void> {
 
     @Nullable
@@ -84,6 +88,10 @@ public final class ApodDBService {
 
   }
 
+  /**
+   * Implements an asynchronous <code>INSERT</code> of one or more {@link Access} instances into the
+   * local database.
+   */
   public static class InsertAccessTask
       extends BaseFluentAsyncTask<Access, Void, List<Long>, List<Long>> {
 
@@ -96,9 +104,3 @@ public final class ApodDBService {
   }
 
 }
-
-
-
-
-
-
