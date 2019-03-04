@@ -69,6 +69,9 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
     Apod apod = (Apod) view.getTag();
     NavActivity activity = (NavActivity) getActivity();
     FragmentService.getInstance().showFragment(activity, R.id.fragment_container, imageFragment);
+    Access access = new Access();
+    access.setApodId(apod.getId());
+    new InsertAccessTask().execute(access);
     imageFragment.setApod(apod);
     activity.getNavigation().setSelectedItemId(R.id.navigation_image);
   }
