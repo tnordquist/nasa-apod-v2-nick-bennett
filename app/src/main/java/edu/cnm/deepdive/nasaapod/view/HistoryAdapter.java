@@ -3,6 +3,8 @@ package edu.cnm.deepdive.nasaapod.view;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +64,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
    * <p>Each view item is clickable (the {@link View.OnClickListener} attached to each is the host
    * {@link HistoryFragment}), supporting display of an APOD selected from the list view.</p>
    */
-  public class Holder extends RecyclerView.ViewHolder {
+  public class Holder extends RecyclerView.ViewHolder
+      implements View.OnCreateContextMenuListener {
 
     private Apod apod;
     private View view;
@@ -73,6 +76,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
       super(itemView);
       view = itemView;
       view.setOnClickListener(historyFragment);
+      view.setOnCreateContextMenuListener(this);
       dateView = itemView.findViewById(R.id.date_view);
       titleView = itemView.findViewById(R.id.title_view);
     }
@@ -82,6 +86,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
       view.setTag(apod);
       dateView.setText(format.format(apod.getDate().toDateTime()));
       titleView.setText(apod.getTitle());
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+      historyFragment.createContextMenu(menu, getAdapterPosition(), apod);
     }
 
   }

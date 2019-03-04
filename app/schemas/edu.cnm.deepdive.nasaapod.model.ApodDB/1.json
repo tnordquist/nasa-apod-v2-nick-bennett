@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "58f2b44a53dba25198b52928b2cb53fe",
+    "identityHash": "fa639a53a76bd4d58e6b26b7159f80d9",
     "entities": [
       {
         "tableName": "Apod",
@@ -74,11 +74,64 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Access",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`access_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `apod_id` INTEGER NOT NULL, `timestamp` INTEGER, FOREIGN KEY(`apod_id`) REFERENCES `Apod`(`apod_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "access_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apodId",
+            "columnName": "apod_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "access_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Access_apod_id",
+            "unique": false,
+            "columnNames": [
+              "apod_id"
+            ],
+            "createSql": "CREATE  INDEX `index_Access_apod_id` ON `${TABLE_NAME}` (`apod_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Apod",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "apod_id"
+            ],
+            "referencedColumns": [
+              "apod_id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"58f2b44a53dba25198b52928b2cb53fe\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fa639a53a76bd4d58e6b26b7159f80d9\")"
     ]
   }
 }

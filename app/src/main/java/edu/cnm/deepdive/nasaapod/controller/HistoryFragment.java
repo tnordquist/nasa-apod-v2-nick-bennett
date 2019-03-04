@@ -5,11 +5,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import edu.cnm.deepdive.nasaapod.R;
+import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
+import edu.cnm.deepdive.nasaapod.service.ApodDBService.DeleteApodTask;
+import edu.cnm.deepdive.nasaapod.service.ApodDBService.InsertAccessTask;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.SelectAllApodTask;
 import edu.cnm.deepdive.nasaapod.service.FragmentService;
 import edu.cnm.deepdive.nasaapod.view.HistoryAdapter;
@@ -90,6 +96,19 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
           })
           .execute();
     }
+  }
+
+  public void createContextMenu(ContextMenu menu, int position, Apod apod) {
+    getActivity().getMenuInflater().inflate(R.menu.item_context, menu);
+    menu.findItem(R.id.context_delete).setOnMenuItemClickListener((item) -> {
+      new DeleteApodTask()
+          .setSuccessListener((v) -> {
+            history.remove(position);
+            adapter.notifyItemRemoved(position);
+          })
+          .execute(apod);
+      return true;
+    });
   }
 
 }

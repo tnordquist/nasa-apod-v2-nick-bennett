@@ -8,7 +8,9 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.Nullable;
 import edu.cnm.deepdive.nasaapod.ApodApplication;
 import edu.cnm.deepdive.nasaapod.model.ApodDB.Converters;
+import edu.cnm.deepdive.nasaapod.model.dao.AccessDao;
 import edu.cnm.deepdive.nasaapod.model.dao.ApodDao;
+import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
 import edu.cnm.deepdive.util.Date;
 import java.util.Calendar;
@@ -19,7 +21,7 @@ import java.util.Calendar;
  * data access objects (DAOs) for the database entities.
  */
 @Database(
-    entities = {Apod.class},
+    entities = {Apod.class, Access.class},
     version = 1,
     exportSchema = true
 )
@@ -43,6 +45,8 @@ public abstract class ApodDB extends RoomDatabase {
    * @return data access object for CRUD operations involving {@link Apod} instances.
    */
   public abstract ApodDao getApodDao();
+
+  public abstract AccessDao getAccessDao();
 
   private static class InstanceHolder {
 

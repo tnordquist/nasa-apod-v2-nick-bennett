@@ -1,8 +1,11 @@
 package edu.cnm.deepdive.nasaapod.service;
 
+import android.support.annotation.Nullable;
 import edu.cnm.deepdive.nasaapod.model.ApodDB;
+import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
 import edu.cnm.deepdive.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,7 +26,15 @@ public final class ApodDBService {
 
     @Override
     protected List<Long> perform(Apod... apods) {
-      return ApodDB.getInstance().getApodDao().insert(apods);
+      List<Long> apodIds = ApodDB.getInstance().getApodDao().insert(apods);
+      List<Access> accesses = new LinkedList<>();
+      for (long id : apodIds) {
+        Access access = new Access();
+        access.setApodId(id);
+        accesses.add(access);
+      }
+      ApodDB.getInstance().getAccessDao().insert(accesses);
+      return apodIds;
     }
 
   }
@@ -40,6 +51,9 @@ public final class ApodDBService {
       if (apod == null) {
         throw new TaskException();
       }
+      Access access = new Access();
+      access.setApodId(apod.getId());
+      ApodDB.getInstance().getAccessDao().insert(access);
       return apod;
     }
 
@@ -59,4 +73,32 @@ public final class ApodDBService {
 
   }
 
+  public static class DeleteApodTask extends BaseFluentAsyncTask<Apod, Void, Void, Void> {
+
+    @Nullable
+    @Override
+    protected Void perform(Apod... apods) throws TaskException {
+      ApodDB.getInstance().getApodDao().delete(apods);
+      return null;
+    }
+
+  }
+
+  public static class InsertAccessTask
+      extends BaseFluentAsyncTask<Access, Void, List<Long>, List<Long>> {
+
+    @Nullable
+    @Override
+    protected List<Long> perform(Access... accesses) throws TaskException {
+      return ApodDB.getInstance().getAccessDao().insert(accesses);
+    }
+
+  }
+
 }
+
+
+
+
+
+
