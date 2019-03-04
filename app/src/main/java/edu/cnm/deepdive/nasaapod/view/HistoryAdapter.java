@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.nasaapod.view;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> {
 
+  Context context;
   private HistoryFragment historyFragment;
   private List<Apod> items;
   private DateFormat format;
@@ -30,16 +32,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
    * @param items source of {@link Apod} instances.
    */
   public HistoryAdapter(HistoryFragment historyFragment, List<Apod> items) {
+    context = historyFragment.getContext();
     this.historyFragment = historyFragment;
     this.items = items;
-    format = android.text.format.DateFormat.getDateFormat(historyFragment.getContext());
+    format = android.text.format.DateFormat.getDateFormat(context);
   }
 
   @NonNull
   @Override
   public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    View view = LayoutInflater.from(historyFragment.getContext())
-        .inflate(R.layout.history_item, viewGroup, false);
+    View view = LayoutInflater.from(context).inflate(R.layout.history_item, viewGroup, false);
     return new Holder(view);
   }
 
