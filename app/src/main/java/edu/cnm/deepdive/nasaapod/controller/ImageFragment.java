@@ -22,7 +22,6 @@ import edu.cnm.deepdive.nasaapod.R;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.InsertApodTask;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.SelectApodTask;
-import edu.cnm.deepdive.nasaapod.service.ApodWebService;
 import edu.cnm.deepdive.nasaapod.service.ApodWebService.GetFromNasaTask;
 import edu.cnm.deepdive.util.Date;
 import java.io.File;

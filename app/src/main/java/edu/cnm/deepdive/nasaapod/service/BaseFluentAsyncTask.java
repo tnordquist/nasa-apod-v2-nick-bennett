@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 /**
- * /** Declares methods, nested interfaces, and a nested exception class, intended to encourage a
- * more fluent, functional, and service-oriented style of extending {@link android.os.AsyncTask}.
+ * Declares methods, nested interfaces, and a nested exception class, intended to encourage a more
+ * fluent, functional, and service-oriented style of extending {@link android.os.AsyncTask}.
  *
  * <p>One aim of this approach is to encourage implementation of {@link
  * AsyncTask} subclasses that are loosely coupled with consumer logic, and easily reused. For
@@ -30,6 +30,12 @@ import android.util.Log;
  * perform(Params...)}, or by specifying a lambda or instance of an anonymous class in
  * an invocation of {@link #setPerformer(Performer)}.</p>
  *
+ * <p><strong>Important:</strong> If the <code>Intermediate</code> and <code>Result</code> types
+ * specified for an instance of this class (or a subclass) are different, then {@link
+ * #setTransformer(Transformer)} <strong>must</strong> be invoked to configure a mapping object
+ * between values of those 2 types; otherwise, a {@link ClassCastException} is likely to be thrown.
+ * </p>
+ *
  * @param <Params> type of input parameters used by the asynchronous task (consumed by {@link
  * #perform(Object[])}), or {@link Void} if no inputs will be used.
  * @param <Progress> type of individual values provided by the asynchronous task for progress
@@ -48,13 +54,10 @@ public class BaseFluentAsyncTask<Params, Progress, Intermediate, Result>
     extends AsyncTask<Params, Progress, Result> {
 
   private Performer<Params, Intermediate> performer = (params) -> null;
-  private ProgressListener<Progress> progressListener = (values) -> {
-  };
+  private ProgressListener<Progress> progressListener = (values) -> {};
   private Transformer<Intermediate, Result> transformer = (intermediate) -> (Result) intermediate;
-  private ResultListener<Result> successListener = (result) -> {
-  };
-  private ResultListener<Result> failureListener = (result) -> {
-  };
+  private ResultListener<Result> successListener = (result) -> {};
+  private ResultListener<Result> failureListener = (result) -> {};
 
   /**
    * Executes basic processing of asynchronous task. This method will always be invoked on a

@@ -115,13 +115,11 @@ public class NavActivity extends AppCompatActivity
     if (imageFragment.isVisible() && imageFragment.getApod() != null) {
       calendar = imageFragment.getApod().getDate().toCalendar();
     }
-    DateTimePickerFragment picker = new DateTimePickerFragment();
-    picker.setMode(Mode.DATE);
-    picker.setCalendar(calendar);
-    picker.setListener((cal) -> {
-      imageFragment.loadApod(Date.fromCalendar(cal));
-    });
-    picker.show(getSupportFragmentManager(), picker.getClass().getSimpleName());
+    new DateTimePickerFragment()
+        .setMode(Mode.DATE)
+        .setCalendar(calendar)
+        .setOnChangeListener((cal) -> imageFragment.loadApod(Date.fromCalendar(cal)))
+        .show(getSupportFragmentManager(), DateTimePickerFragment.class.getSimpleName());
   }
 
 }

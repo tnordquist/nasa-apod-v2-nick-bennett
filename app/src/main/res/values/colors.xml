@@ -3,6 +3,8 @@
   <color name="colorPrimary">#3F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
-  <color name="colorStaticText">#A0000000</color>
-  <color name="colorColumnSeparator">#40000000</color>
+  <color name="staticText">#A0000000</color>
+  <color name="columnSeparator">#40000000</color>
+  <color name="checkedNavigatorItem">#FFFFFFFF</color>
+  <color name="navigatorItem">#FFD0D0D0</color>
 </resources>
