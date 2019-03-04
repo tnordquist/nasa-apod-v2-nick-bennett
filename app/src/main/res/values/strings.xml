@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">NASA APOD</string>
+  <string name="base_url">https://api.nasa.gov/</string>
+  <string name="error_message">Unable to retrieve APOD for selected date.</string>
+  <string name="title_image">Image</string>
+  <string name="title_history">History</string>
+  <string name="image_info">Info</string>
+  <string name="calendar">Pick date</string>
+</resources>

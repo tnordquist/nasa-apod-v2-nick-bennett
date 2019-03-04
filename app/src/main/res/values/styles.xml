@@ -1,0 +1,36 @@
+<resources>
+
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <style name="HistoryCard" parent="AppTheme">
+    <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    <item name="android:layout_margin">@dimen/card_spacing</item>
+    <item name="contentPadding">@dimen/card_padding</item>
+    <item name="cardElevation">@dimen/card_rest_elevation</item>
+    <item name="cardMaxElevation">@dimen/card_max_elevation</item>
+  </style>
+
+  <style name="HistoryCardTextTheme" parent="AppTheme">
+    <item name="android:textSize">@dimen/list_item_text_size</item>
+    <item name="android:textColor">@color/colorStaticText</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="DateText">
+    <item name="android:textAlignment">viewEnd</item>
+    <item name="android:textStyle">normal</item>
+  </style>
+
+  <style name="ColumnSeparator">
+    <item name="android:layout_marginLeft">@dimen/column_half_margin</item>
+    <item name="android:layout_marginRight">@dimen/column_half_margin</item>
+    <item name="android:background">@color/colorColumnSeparator</item>
+  </style>
+
+</resources>
