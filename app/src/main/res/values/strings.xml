@@ -7,4 +7,10 @@
   <string name="image_info">Info</string>
   <string name="calendar">Pick date</string>
   <string name="context_delete">Delete</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="url_label">URL:</string>
+  <string name="hd_url_label">HD URL:</string>
+  <string name="positive_label">OK</string>
 </resources>

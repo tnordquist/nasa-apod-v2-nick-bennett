@@ -41,4 +41,10 @@
     <item name="itemTextColor">@color/bottom_navigation_item</item>
   </style>
 
+  <style name="LinkLabel" parent="AppTheme">
+    <item name="android:paddingEnd">@dimen/label_gap</item>
+    <item name="android:layout_marginTop">@dimen/item_spacing</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
 </resources>

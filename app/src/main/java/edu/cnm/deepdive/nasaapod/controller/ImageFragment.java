@@ -80,7 +80,7 @@ public class ImageFragment extends Fragment {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == R.id.info) {
-      showInfo();
+      showFullInfo();
       return true;
     }
     return super.onOptionsItemSelected(item);
@@ -243,6 +243,11 @@ public class ImageFragment extends Fragment {
     if (apod != null && isVisible()) {
       Toast.makeText(getContext(), apod.getTitle(), Toast.LENGTH_LONG).show();
     }
+  }
+
+  private void showFullInfo() {
+    InfoFragment fragment = InfoFragment.newInstance(apod);
+    fragment.show(getFragmentManager(), fragment.getClass().getSimpleName());
   }
 
   private void showFailure() {
