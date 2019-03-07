@@ -40,7 +40,7 @@ public class InfoFragment extends DialogFragment {
     TextView hdUrl = view.findViewById(R.id.hd_url);
     explanation.setText(apod.getExplanation());
     url.setText(apod.getUrl());
-    if (apod.getHdUrl() != null) {
+    if (apod.getHdUrl() != null && !apod.getUrl().equals(apod.getHdUrl())) {
       hdUrl.setText(apod.getHdUrl());
     } else {
       hdUrl.setVisibility(View.GONE);
