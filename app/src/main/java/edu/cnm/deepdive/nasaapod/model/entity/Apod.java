@@ -10,6 +10,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import edu.cnm.deepdive.util.Date;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Encapsulates the attributes of a single NASA Astronomy Picture of the Day (APOD). Room and GSon
@@ -231,6 +232,21 @@ public class Apod implements Serializable {
 
   public boolean isMediaImage() {
     return mediaType.equals(IMAGE_MEDIA_TYPE);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    Apod other = (Apod) obj;
+    return date.toEpochDays() == other.date.toEpochDays()
+        && Objects.equals(title, other.title)
+        && Objects.equals(explanation, other.explanation)
+        && Objects.equals(url, other.url)
+        && Objects.equals(hdUrl, other.hdUrl)
+        && Objects.equals(mediaType, other.mediaType)
+        && Objects.equals(copyright, other.copyright);
   }
 
 }
