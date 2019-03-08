@@ -12,6 +12,7 @@ import android.widget.TextView;
 import edu.cnm.deepdive.nasaapod.R;
 import edu.cnm.deepdive.nasaapod.controller.HistoryFragment;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
+import edu.cnm.deepdive.nasaapod.model.pojo.ApodWithAccesses;
 import java.text.DateFormat;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
 
   Context context;
   private HistoryFragment historyFragment;
-  private List<Apod> items;
+  private List<ApodWithAccesses> items;
   private DateFormat format;
 
   /**
@@ -33,7 +34,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
    * @param historyFragment host fragment.
    * @param items source of {@link Apod} instances.
    */
-  public HistoryAdapter(HistoryFragment historyFragment, List<Apod> items) {
+  public HistoryAdapter(HistoryFragment historyFragment, List<ApodWithAccesses> items) {
     context = historyFragment.getContext();
     this.historyFragment = historyFragment;
     this.items = items;
@@ -71,6 +72,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
     private View view;
     private TextView dateView;
     private TextView titleView;
+    private TextView accessCountView;
 
     private Holder(@NonNull View itemView) {
       super(itemView);
@@ -79,13 +81,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> 
       view.setOnCreateContextMenuListener(this);
       dateView = itemView.findViewById(R.id.date_view);
       titleView = itemView.findViewById(R.id.title_view);
+      accessCountView = itemView.findViewById(R.id.access_count_view);
     }
 
-    private void bind(Apod apod) {
-      this.apod = apod;
+    private void bind(ApodWithAccesses apodWithAccesses) {
+      this.apod = apodWithAccesses.getApod();
       view.setTag(apod);
       dateView.setText(format.format(apod.getDate().toDateTime()));
       titleView.setText(apod.getTitle());
+      accessCountView.setText(context.getString(R.string.access_count_format,
+          apodWithAccesses.getAccesses().size()));
     }
 
     @Override

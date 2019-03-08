@@ -27,6 +27,12 @@
     <item name="android:textStyle">normal</item>
   </style>
 
+  <style name="CountText">
+    <item name="android:textAlignment">viewEnd</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:paddingEnd">@dimen/item_spacing</item>
+  </style>
+
   <style name="ColumnSeparator">
     <item name="android:layout_marginLeft">@dimen/column_half_margin</item>
     <item name="android:layout_marginRight">@dimen/column_half_margin</item>

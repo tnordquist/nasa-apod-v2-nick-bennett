@@ -16,7 +16,7 @@
       android:id="@+id/date_view"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
+      android:layout_weight="2"
       style="@style/DateText"/>
 
     <View
@@ -28,7 +28,19 @@
       android:id="@+id/title_view"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_weight="4"/>
+      android:layout_weight="8"/>
+
+    <View
+      android:layout_width="@dimen/column_separator_width"
+      android:layout_height="match_parent"
+      style="@style/ColumnSeparator"/>
+
+    <TextView
+      android:id="@+id/access_count_view"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      style="@style/CountText"/>
 
   </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import edu.cnm.deepdive.nasaapod.model.ApodDB;
 import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
+import edu.cnm.deepdive.nasaapod.model.pojo.ApodWithAccesses;
 import edu.cnm.deepdive.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,6 +70,16 @@ public final class ApodDBService {
     @Override
     protected List<Apod> perform(Void... voids) {
       return ApodDB.getInstance().getApodDao().findAll();
+    }
+
+  }
+
+  public static class SelectAllApodWithAccessesTask
+      extends BaseFluentAsyncTask<Void, Void, List<ApodWithAccesses>, List<ApodWithAccesses>> {
+
+    @Override
+    protected List<ApodWithAccesses> perform(Void... voids) {
+      return ApodDB.getInstance().getApodDao().findAllWithAccesses();
     }
 
   }

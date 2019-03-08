@@ -14,9 +14,11 @@ import android.view.ViewGroup;
 import edu.cnm.deepdive.nasaapod.R;
 import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
+import edu.cnm.deepdive.nasaapod.model.pojo.ApodWithAccesses;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.DeleteApodTask;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.InsertAccessTask;
 import edu.cnm.deepdive.nasaapod.service.ApodDBService.SelectAllApodTask;
+import edu.cnm.deepdive.nasaapod.service.ApodDBService.SelectAllApodWithAccessesTask;
 import edu.cnm.deepdive.nasaapod.service.FragmentService;
 import edu.cnm.deepdive.nasaapod.view.HistoryAdapter;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import java.util.List;
  */
 public class HistoryFragment extends Fragment implements View.OnClickListener {
 
-  private List<Apod> history;
+  private List<ApodWithAccesses> history;
   private HistoryAdapter adapter;
   private ImageFragment imageFragment;
 
@@ -91,7 +93,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
    */
   public void refresh() {
     if (!isHidden()) {
-      new SelectAllApodTask()
+      new SelectAllApodWithAccessesTask()
           .setSuccessListener((apods) -> {
             history.clear();
             history.addAll(apods);
