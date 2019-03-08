@@ -6,6 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
+import edu.cnm.deepdive.nasaapod.model.pojo.ApodWithAccesses;
 import edu.cnm.deepdive.util.Date;
 import java.util.List;
 
@@ -43,6 +44,9 @@ public interface ApodDao {
    */
   @Query("SELECT * FROM Apod ORDER BY date DESC")
   List<Apod> findAll();
+
+  @Query("SELECT * FROM Apod ORDER BY date DESC")
+  List<ApodWithAccesses> findAllWithAccesses();
 
   /**
    * Deletes one or more {@link Apod} instances from local database.
