@@ -145,7 +145,7 @@ public class ImageFragment extends Fragment {
         .setFailureListener((nullApod) -> {
           new GetFromNasaTask()
               .setTransformer((apod) -> {
-                new InsertApodTask().execute(apod);
+                new InsertApodTask(isVisible()).execute(apod);
                 saveIfNeeded(apod);
                 return apod;
               })

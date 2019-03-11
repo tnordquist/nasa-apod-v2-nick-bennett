@@ -13,5 +13,7 @@
   <string name="positive_label">OK</string>
 
   <string name="access_count_format">%,d</string>
+  <string name="login_failure_message">Unable to sign in with provided credentials</string>
+  <string name="sign_out">Sign out</string>
 
 </resources>

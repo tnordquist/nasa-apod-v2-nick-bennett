@@ -25,16 +25,24 @@ public final class ApodDBService {
   public static class InsertApodTask
       extends BaseFluentAsyncTask<Apod, Void, List<Long>, List<Long>> {
 
+    private boolean foreground;
+
+    public InsertApodTask(boolean foreground) {
+      this.foreground = foreground;
+    }
+
     @Override
     protected List<Long> perform(Apod... apods) {
       List<Long> apodIds = ApodDB.getInstance().getApodDao().insert(apods);
-      List<Access> accesses = new LinkedList<>();
-      for (long id : apodIds) {
-        Access access = new Access();
-        access.setApodId(id);
-        accesses.add(access);
+      if (foreground) {
+        List<Access> accesses = new LinkedList<>();
+        for (long id : apodIds) {
+          Access access = new Access();
+          access.setApodId(id);
+          accesses.add(access);
+        }
+        ApodDB.getInstance().getAccessDao().insert(accesses);
       }
-      ApodDB.getInstance().getAccessDao().insert(accesses);
       return apodIds;
     }
 

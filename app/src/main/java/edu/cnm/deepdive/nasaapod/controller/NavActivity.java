@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.nasaapod.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import edu.cnm.deepdive.nasaapod.R;
 import edu.cnm.deepdive.nasaapod.controller.DateTimePickerFragment.Mode;
 import edu.cnm.deepdive.nasaapod.service.FragmentService;
+import edu.cnm.deepdive.nasaapod.service.GoogleSignInService;
 import edu.cnm.deepdive.util.Date;
 import java.util.Calendar;
 
@@ -62,11 +64,18 @@ public class NavActivity extends AppCompatActivity
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.calendar) {
-      pickApodDate();
-      return true;
+    boolean handled = true;
+    switch (item.getItemId()) {
+      case R.id.calendar:
+        pickApodDate();
+        break;
+      case R.id.sign_out:
+        signOut();
+        break;
+      default:
+        handled = super.onOptionsItemSelected(item);
     }
-    return super.onOptionsItemSelected(item);
+    return handled;
   }
 
   private void setupFragments(Bundle savedInstanceState) {
@@ -120,6 +129,17 @@ public class NavActivity extends AppCompatActivity
         .setCalendar(calendar)
         .setOnChangeListener((cal) -> imageFragment.loadApod(Date.fromCalendar(cal)))
         .show(getSupportFragmentManager(), DateTimePickerFragment.class.getSimpleName());
+  }
+
+  private void signOut() {
+    GoogleSignInService.getInstance().getClient()
+        .signOut()
+        .addOnCompleteListener(this, (task) -> {
+          GoogleSignInService.getInstance().setAccount(null);
+          Intent intent = new Intent(this, LoginActivity.class);
+          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+          startActivity(intent);
+        });
   }
 
 }
