@@ -27,6 +27,13 @@ public final class ApodDBService {
 
     private boolean foreground;
 
+    /**
+     * Initializes <code>INSERT</code> task with <code>foreground</code> indicating intention to
+     * present image immediately in user interface
+     *
+     * @param foreground <code>true</code> if image will be displayed immediately;
+     * <code>false</code> otherwise.
+     */
     public InsertApodTask(boolean foreground) {
       this.foreground = foreground;
     }
