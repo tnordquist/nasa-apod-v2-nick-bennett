@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.nasaapod.service;
 
 import android.support.annotation.Nullable;
+import edu.cnm.deepdive.android.BaseFluentAsyncTask;
 import edu.cnm.deepdive.nasaapod.model.ApodDB;
 import edu.cnm.deepdive.nasaapod.model.entity.Access;
 import edu.cnm.deepdive.nasaapod.model.entity.Apod;
